@@ -60,6 +60,16 @@ test('Puede mostrar un empleado', function () {
     $response->assertJsonPath('data.nombres', 'Ana');
 });
 
+test('Muestra mensaje cuando el empleado no existe', function () {
+    $response = $this->getJson('/api/empleados/999999');
+
+    $response->assertStatus(404);
+    $response->assertJson([
+        'success' => false,
+        'message' => 'El empleado no existe en la base de datos',
+    ]);
+});
+
 test('Puede actializar un empleado', function () {
     $empleado = Empleado::create([
         'nombres' => 'Luis',

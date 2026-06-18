@@ -39,6 +39,16 @@ test('Puede mostrar un cargo', function () {
     $response->assertJsonPath('data.id', $cargo->id);
 });
 
+test('Muestra mensaje cuando el cargo no existe', function () {
+    $response = $this->getJson('/api/cargos/999999');
+
+    $response->assertStatus(404);
+    $response->assertJson([
+        'success' => false,
+        'message' => 'El cargo no existe en la base de datos',
+    ]);
+});
+
 test('Puede actualizar un cargo', function () {
     $cargo = Cargo::create([
         'nombre_cargo' => 'Técnico',

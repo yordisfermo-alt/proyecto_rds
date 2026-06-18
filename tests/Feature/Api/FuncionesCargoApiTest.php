@@ -48,6 +48,16 @@ test('puede mostrar una funcion cargo', function () {
     $response->assertJsonPath('data.id', $funcion->id);
 });
 
+test('Muestra mensaje cuando la funcion de cargo no existe', function () {
+    $response = $this->getJson('/api/funciones-cargo/999999');
+
+    $response->assertStatus(404);
+    $response->assertJson([
+        'success' => false,
+        'message' => 'La funcion de cargo no existe en la base de datos',
+    ]);
+});
+
 test('Puede actualizar una funcion cargo', function () {
     $funcion = FuncionesCargo::create([
         'descripcion_funcion' => 'Revisar reportes',

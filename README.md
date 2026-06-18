@@ -6,6 +6,7 @@ API REST en Laravel para administrar empleados, cargos y funciones de cargo. Las
 
 - PHP 8.3 o superior
 - Composer
+- Node.js y npm
 - MySQL
 - curl
 

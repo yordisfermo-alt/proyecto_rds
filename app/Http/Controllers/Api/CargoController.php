@@ -14,7 +14,7 @@ class CargoController extends Controller
     public function index(Request $request)
     {
         $perPage = max(1, min((int) $request->query('per_page', 10), 100));
-        $cargos = Cargo::with('empleados', 'funciones')->paginate($perPage);
+        $cargos = Cargo::paginate($perPage);
         
         return response()->json([
             'success' => true,
@@ -59,7 +59,7 @@ class CargoController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => $cargo->load('empleados', 'funciones'),
+            'data' => $cargo,
             'message' => 'Cargo obtenido correctamente'
         ],200);
     }

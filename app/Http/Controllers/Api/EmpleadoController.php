@@ -17,7 +17,7 @@ class EmpleadoController extends Controller
     public function index(Request $request)
     {
         $perPage = max(1, min((int) $request->query('per_page', 10), 100));
-        $empleados = Empleado::with('cargo.funciones')->paginate($perPage);
+        $empleados = Empleado::paginate($perPage);
 
         return response()->json([
             'success' => true,
@@ -46,7 +46,7 @@ class EmpleadoController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => new EmpleadoResource($empleado->load('cargo.funciones')),
+            'data' => new EmpleadoResource($empleado),
             'message' => 'Empleado creado correctamente'
         ],201);
     }
@@ -58,7 +58,7 @@ class EmpleadoController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => new EmpleadoResource($empleado->load('cargo.funciones')),
+            'data' => new EmpleadoResource($empleado),
             'message' => 'Empleado obtenido correctamente'
         ],200);
     }
@@ -73,7 +73,7 @@ class EmpleadoController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => new EmpleadoResource($empleado->load('cargo.funciones')),
+            'data' => new EmpleadoResource($empleado),
             'message' => 'Empleado actualizado correctamente'
         ],200);
     }

@@ -14,7 +14,7 @@ class FuncionesCargoController extends Controller
     public function index(Request $request)
     {
         $perPage = max(1, min((int) $request->query('per_page', 10), 100));
-        $funcionesCargo = FuncionesCargo::with('cargo')->paginate($perPage);
+        $funcionesCargo = FuncionesCargo::paginate($perPage);
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class FuncionesCargoController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => $funcionesCargo->load('cargo'),
+            'data' => $funcionesCargo,
             'message' => 'Funcion de cargo obtenida correctamente'
         ],200);
     }
