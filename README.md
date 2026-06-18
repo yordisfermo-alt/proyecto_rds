@@ -18,6 +18,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 
+
 Configura la base de datos en el archivo `.env`:
 
 ```.env
