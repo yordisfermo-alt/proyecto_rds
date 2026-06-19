@@ -53,6 +53,8 @@ class AuthController extends Controller
             ]);
         }
 
+        $user->tokens()->delete();
+
         // Opcional: nombre del token para identificarlo (útil si manejas múltiples dispositivos)
         $token = $user->createToken('api-token')->plainTextToken;
 

@@ -10,6 +10,12 @@ API REST en Laravel para administrar empleados, cargos y funciones de cargo. Las
 - MySQL
 - curl
 
+
+## Clonar el repositorio
+
+https://github.com/yordisfermo-alt/proyecto_rds.git
+
+
 ## Instalacion
 
 ```bash
