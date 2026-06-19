@@ -72,25 +72,25 @@ http://127.0.0.1:8000/api
 
 ## Resumen de Rutas
 
-| Metodo | Ruta | Descripcion |
-| --- | --- | --- |
-| POST | `/api/register` | Registrar usuario |
-| POST | `/api/login` | Iniciar sesion |
-| POST | `/api/logout` | Cerrar sesion |
-| GET | `/api/me` | Ver usuario autenticado |
-| GET | `/api/empleados` | Listar empleados |
-| GET | `/api/empleados/{id}` | Ver un empleado |
-| POST | `/api/empleados` | Crear empleado |
-| PUT | `/api/empleados/{id}` | Actualizar empleado |
-| DELETE | `/api/empleados/{id}` | Eliminar empleado |
-| GET | `/api/cargos` | Listar cargos |
-| POST | `/api/cargos` | Crear cargo |
-| PUT | `/api/cargos/{id}` | Actualizar cargo |
-| DELETE | `/api/cargos/{id}` | Eliminar cargo |
-| GET | `/api/funciones-cargo` | Listar funciones de cargo |
-| POST | `/api/funciones-cargo` | Crear funcion de cargo |
-| PUT | `/api/funciones-cargo/{id}` | Actualizar funcion de cargo |
-| DELETE | `/api/funciones-cargo/{id}` | Eliminar funcion de cargo |
+| Metodo | Ruta | Acceso | Descripcion |
+| --- | --- | --- | --- |
+| POST | `/api/register` | Publica | Registrar usuario |
+| POST | `/api/login` | Publica | Iniciar sesion |
+| POST | `/api/logout` | Protegida | Cerrar sesion |
+| GET | `/api/me` | Protegida | Ver usuario autenticado |
+| GET | `/api/empleados` | Protegida | Listar empleados |
+| GET | `/api/empleados/{id}` | Protegida | Ver un empleado |
+| POST | `/api/empleados` | Protegida | Crear empleado |
+| PUT | `/api/empleados/{id}` | Protegida | Actualizar empleado |
+| DELETE | `/api/empleados/{id}` | Protegida | Eliminar empleado |
+| GET | `/api/cargos` | Protegida | Listar cargos |
+| POST | `/api/cargos` | Protegida | Crear cargo |
+| PUT | `/api/cargos/{id}` | Protegida | Actualizar cargo |
+| DELETE | `/api/cargos/{id}` | Protegida | Eliminar cargo |
+| GET | `/api/funciones-cargo` | Protegida | Listar funciones de cargo |
+| POST | `/api/funciones-cargo` | Protegida | Crear funcion de cargo |
+| PUT | `/api/funciones-cargo/{id}` | Protegida | Actualizar funcion de cargo |
+| DELETE | `/api/funciones-cargo/{id}` | Protegida | Eliminar funcion de cargo |
 
 Los listados aceptan paginacion con `page` y `per_page`:
 
