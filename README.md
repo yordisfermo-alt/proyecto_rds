@@ -49,14 +49,6 @@ Esto crea:
 - 30 empleados
 - 5 funciones por cada cargo
 
-## Registrar Usuario
-
-```bash
-curl -X POST http://127.0.0.1:8000/api/register \
-  -H "Accept: application/json" \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Admin","email":"admin@example.com","password":"password123"}'
-```
 
 ## Iniciar Servidor
 
@@ -70,6 +62,15 @@ La API queda disponible en:
 http://127.0.0.1:8000/api
 ```
 
+## Registrar Usuario
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/register \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"TuNombre","email":"TuEmail@example.com","password":"TuContraseña"}'
+```
+
 ## Resumen de Rutas
 
 | Metodo | Ruta | Acceso | Descripcion |
@@ -80,6 +81,7 @@ http://127.0.0.1:8000/api
 | GET | `/api/me` | Protegida | Ver usuario autenticado |
 | GET | `/api/empleados` | Protegida | Listar empleados |
 | GET | `/api/empleados/{id}` | Protegida | Ver un empleado |
+| GET | `/api/empleados/{id}/detalle` | Protegida | Ver detalle de un empleado |
 | POST | `/api/empleados` | Protegida | Crear empleado |
 | PUT | `/api/empleados/{id}` | Protegida | Actualizar empleado |
 | DELETE | `/api/empleados/{id}` | Protegida | Eliminar empleado |
@@ -143,6 +145,14 @@ Ver un empleado:
 
 ```bash
 curl http://127.0.0.1:8000/api/empleados/1 \
+  -H "Accept: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+Ver detalle completo de un empleado:
+
+```bash
+curl http://127.0.0.1:8000/api/empleados/1/detalle \
   -H "Accept: application/json" \
   -H "Authorization: Bearer $TOKEN"
 ```

@@ -63,6 +63,15 @@ class EmpleadoController extends Controller
         ],200);
     }
 
+    public function detalle(Empleado $empleado)
+    {
+        return response()->json([
+            'success' => true,
+            'data' => new EmpleadoResource($empleado->load('cargo.funciones')),
+            'message' => 'Detalle del empleado obtenido correctamente'
+        ], 200);
+    }
+
     /**
      * Update the specified resource in storage.
      */

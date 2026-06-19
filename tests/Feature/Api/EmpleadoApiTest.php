@@ -58,6 +58,24 @@ test('Puede mostrar un empleado', function () {
     $response = $this->getJson("/api/empleados/{$empleado->id}");
     $response->assertStatus(200);
     $response->assertJsonPath('data.nombres', 'Ana');
+    $response->assertJsonMissingPath('data.cargo');
+});
+
+test('Puede mostrar el detalle completo de un empleado', function () {
+    $empleado = Empleado::create([
+        'nombres' => 'Ana',
+        'apellidos' => 'García',
+        'fecha_nacimiento' => '1992-03-20',
+        'fecha_ingreso' => '2019-06-01',
+        'salario' => 3000,
+        'estado' => true,
+        'id_cargo' => $this->cargo->id,
+    ]);
+
+    $response = $this->getJson("/api/empleados/{$empleado->id}/detalle");
+    $response->assertStatus(200);
+    $response->assertJsonPath('data.nombres', 'Ana');
+    $response->assertJsonPath('data.cargo.nombre_cargo', 'Gerente');
 });
 
 test('Muestra mensaje cuando el empleado no existe', function () {

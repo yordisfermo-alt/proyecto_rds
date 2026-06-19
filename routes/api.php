@@ -17,6 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']); // Esta es para cerrar la sesion
     Route::get('/me', [AuthController::class, 'me']);
 
+    Route::get('/empleados/{empleado}/detalle', [EmpleadoController::class, 'detalle']);
     Route::apiResource('empleados', EmpleadoController::class);
     Route::apiResource('cargos', CargoController::class);
     Route::apiResource('funciones-cargo', FuncionesCargoController::class);
