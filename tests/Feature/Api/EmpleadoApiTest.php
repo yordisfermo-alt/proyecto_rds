@@ -2,6 +2,7 @@
 
 use App\Models\Empleado;
 use App\Models\Cargo;
+use App\Models\FuncionesCargo;
 use App\Models\User;
 
 beforeEach(function () {
@@ -76,6 +77,41 @@ test('Puede mostrar el detalle completo de un empleado', function () {
     $response->assertStatus(200);
     $response->assertJsonPath('data.nombres', 'Ana');
     $response->assertJsonPath('data.cargo.nombre_cargo', 'Gerente');
+});
+
+test('Muestra el detalle del empleado con las funciones restantes despues de eliminar una funcion', function () {
+    $empleado = Empleado::create([
+        'nombres' => 'Ana',
+        'apellidos' => 'Garcia',
+        'fecha_nacimiento' => '1992-03-20',
+        'fecha_ingreso' => '2019-06-01',
+        'salario' => 3000,
+        'estado' => true,
+        'id_cargo' => $this->cargo->id,
+    ]);
+
+    $funcionEliminada = FuncionesCargo::create([
+        'descripcion_funcion' => 'Asignar tareas',
+        'estado' => true,
+        'id_cargo' => $this->cargo->id,
+    ]);
+
+    FuncionesCargo::create([
+        'descripcion_funcion' => 'Revisar reportes',
+        'estado' => true,
+        'id_cargo' => $this->cargo->id,
+    ]);
+
+    $this->deleteJson("/api/funciones-cargo/{$funcionEliminada->id}")
+        ->assertStatus(200);
+
+    $response = $this->getJson("/api/empleados/{$empleado->id}/detalle");
+
+    $response->assertStatus(200);
+    $response->assertJsonPath('data.nombres', 'Ana');
+    $response->assertJsonPath('data.cargo.nombre_cargo', 'Gerente');
+    $response->assertJsonCount(1, 'data.cargo.funciones');
+    $response->assertJsonPath('data.cargo.funciones.0.descripcion_funcion', 'Revisar reportes');
 });
 
 test('Muestra mensaje cuando el empleado no existe', function () {

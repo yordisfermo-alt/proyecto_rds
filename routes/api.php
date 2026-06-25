@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EmpleadoController;
 use App\Http\Controllers\Api\CargoController;
-use App\Http\Controllers\Api\FuncionescargoController;
+use App\Http\Controllers\Api\FuncionesCargoController;
 
 // Rutas públicas
 Route::post('/register', [AuthController::class, 'register']); //Esta es para reguistra usuarios

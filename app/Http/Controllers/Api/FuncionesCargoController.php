@@ -56,11 +56,11 @@ class FuncionesCargoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(FuncionesCargo $funcionesCargo)
+    public function show(FuncionesCargo $funciones_cargo)
     {
         return response()->json([
             'success' => true,
-            'data' => $funcionesCargo,
+            'data' => $funciones_cargo,
             'message' => 'Funcion de cargo obtenida correctamente'
         ],200);
     }
@@ -68,7 +68,7 @@ class FuncionesCargoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, FuncionesCargo $funcionesCargo)
+    public function update(Request $request, FuncionesCargo $funciones_cargo)
     {
         //validacion
         $validated = $request->validate([
@@ -77,11 +77,11 @@ class FuncionesCargoController extends Controller
             'id_cargo' => 'sometimes|required|exists:cargos,id',
         ]);
 
-        $funcionesCargo->update($validated);
+        $funciones_cargo->update($validated);
 
         return response()->json([
             'success' => true,
-            'data' => $funcionesCargo,
+            'data' => $funciones_cargo,
             'message' => 'Funcion de cargo actualizada correctamente'
         ],200);
     }
@@ -89,9 +89,9 @@ class FuncionesCargoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FuncionesCargo $funcionesCargo)
+    public function destroy(FuncionesCargo $funciones_cargo)
     {
-        $funcionesCargo->delete();
+        $funciones_cargo->delete();
 
         return response()->json([
             'success' => true,
